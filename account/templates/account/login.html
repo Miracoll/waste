@@ -1,0 +1,60 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>WASTE BIN MANAGEMENT SYSTEM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <div class="card col-6 mx-auto">
+            <div class="card-header">
+                <h4 class="text-muted text-center">WASTE BIN MANAGEMENT SYSTEM</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{% static 'image/home.png' %}" alt="" class="rounded-circle">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-group my-2">
+                        <label for="">USERNAME</label>
+                        <input type="text" name="username" id="" placeholder="Enter username" class="form-control">
+                    </div>
+                    <div class="form-group my-2">
+                        <div class="d-flex justify-content-between">
+                            <label for="">PASSWORD</label>
+                            <a href="#" class="text-danger text-right">Forget password?</a>
+                        </div>
+                        <input type="password" name="password" id="" placeholder="Password" class="form-control">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-secondary w-100 my-2">GRANT ACCESS</button>
+                </form>
+                </div>
+        </div>
+      </div>
+		</div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
