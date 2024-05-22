@@ -14,7 +14,7 @@ class BinSerializer(serializers.ModelSerializer):
 class WasteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Waste
-        fields = '__all__'
+        fields = ['occupied_percent','battery_percent']
 
     def update(self, instance, validated_data):
         instance.occupied_percent = validated_data.get('occupied_percent', instance.occupied_percent)

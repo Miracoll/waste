@@ -6,8 +6,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Waste
 from .serializers import BinSerializer, WasteSerializer
+import requests
 
 # Create your views here.
+def sendMessage(message):
+    msg = message.replace(' ','+')
+    url = f'https://api.callmebot.com/whatsapp.php?phone=2349034210056&text={msg}&apikey=3426545'
+    x = requests.post(url)
 
 def home(request):
     context = {}
@@ -90,6 +95,28 @@ class ConfigDetail(APIView):
         serializer = WasteSerializer(config, data=request.data)
         if serializer.is_valid():
             serializer.save()
+
+            print(request.data)
+            
+            sendMessage(f"Dear admin {config.name} at {config.location} is {request.data.get('occupied_percent')}% full.")
+
+            url = "https://app.smartsmssolutions.com/io/api/client/v1/sms/"
+
+            payload={'token': 'waXAE6o6HoQHTCP1jwhvavnuC1knl6TjPsbKzeU8CEngOrX8KX',
+            'sender': 'RRR',
+            'to': '09046156799',
+            'message': f"Dear admin {config.name} at {config.location} is {request.data.get('occupied_percent')}% full.",
+            'type': 0,
+            'routing': 3,
+            }
+            files=[
+
+            ]
+            headers = {}
+
+            response = requests.request("POST", url, headers=headers, data=payload, files=files)
+            print(response.text)
+
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -104,3 +131,4 @@ class ConfigDetail(APIView):
 #         #     return Response({'error':'not found'}, status=status.HTTP_404_NOT_FOUND)
 #         serializer = ConfigSerializer(config)
 #         return Response(serializer.data)
+        
